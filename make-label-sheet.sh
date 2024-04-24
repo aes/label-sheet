@@ -6,7 +6,9 @@ elif [ -r "label-sheet.config" ]; then
   source "label-sheet.config"
 fi
 
-if [ -r ~/.config/label-sheet/template.ps ]; then
+if [ -n "$template" ]; then
+  :  # oh, it's defined already? use that, then
+elif [ -r ~/.config/label-sheet/template.ps ]; then
   template=~/.config/label-sheet/template.ps
 elif [ -r template.ps ]; then
   template=template.ps
