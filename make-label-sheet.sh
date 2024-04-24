@@ -12,6 +12,9 @@ elif [ -r template.ps ]; then
   template=template.ps
 fi
 
+END=$(grep 'codePair$' template-small.ps);
+END="${END##*(}"
+END="10#${END%%)*}"
 template="$(cat "$template")"
 
 template="${template/URL_BASE/$url_base}"
@@ -19,7 +22,7 @@ template="${template/VCARD/$vcard}"
 template="${template/LINE1/$line1}"
 template="${template/LINE2/$line2}"
 
-for i in {0..23}; do
+for ((i=0; i <= END; i++)); do
   a=$((RANDOM % 256))
   b=$((RANDOM % 4096))
   c=$((RANDOM % 4096))
